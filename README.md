@@ -1,5 +1,9 @@
 # forum
 
+Symfony 4.1
+
 1st: run composer install
 
-start server: php bin/console server:run
+2nd: start server
+
+3th: enjoy
