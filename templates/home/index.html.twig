@@ -17,16 +17,20 @@
         }
     </style>
 
-    {% if app.user %}
-        <p><a href="{{ path('fos_user_security_logout') }}">logout</a></p>
-        <p><a href="{{ path('fos_user_profile_show') }}">View my profile</a></p>
-        <p><a href="{{ path('fos_user_profile_edit') }}">Edit my profile</a></p>
-        <p><a href="{{ path('fos_user_change_password') }}">Change password</a></p>
-    {% else %}
-        <p><a href="{{ path('fos_user_security_login') }}">login</a></p>
-    {% endif %}
+
 
     <div class="example-wrapper">
+
+        {% if app.user %}
+            <p><a href="{{ path('fos_user_security_logout') }}">logout</a></p>
+            <p><a href="{{ path('fos_user_profile_show') }}">View my profile</a></p>
+            <p><a href="{{ path('fos_user_profile_edit') }}">Edit my profile</a></p>
+            <p><a href="{{ path('fos_user_change_password') }}">Change password</a></p>
+        {% else %}
+            <p><a href="{{ path('fos_user_security_login') }}">login</a></p>
+        {% endif %}
+
+
         <h1>Hello {{ controller_name }}! ✅</h1>
 
         This friendly message is coming from:
