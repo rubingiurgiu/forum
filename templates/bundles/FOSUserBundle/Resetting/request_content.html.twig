@@ -1,3 +1,5 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
 <style>
     @import url("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700");
 
@@ -121,17 +123,6 @@
 </style>
 
 
-{#{% block stylesheets %}#}
-    {#<link rel="stylesheet" href="{{ asset('assets/scss/login.css') }}">#}
-{#{% endblock %}#}
-
-{% trans_default_domain 'FOSUserBundle' %}
-
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
-
-
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -141,44 +132,29 @@
     <article class="container-login center-block">
         <section>
             <ul id="top-bar" class="nav nav-tabs nav-justified">
-                <li class="active"><a>{{ 'security.login.submit'|trans }}</a></li>
-                <li><a href="{{ path('fos_user_resetting_request') }}">{{ 'resetting.request.submit'|trans }}</a></li>
+                <li><a href="{{ path('fos_user_security_login') }}">{{ 'security.login.submit'|trans }}</a></li>
+                <li class="active"><a>{{ 'resetting.request.submit'|trans }}</a></li>
             </ul>
             <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
                 <div id="login-access" class="tab-pane fade active in">
-                    <h2><i class="glyphicon glyphicon-log-in"></i> {{ 'security.login.submit'|trans }}</h2>
+                    <h2><i class="glyphicon glyphicon-log-in"></i> {{ 'resetting.request.submit'|trans }}</h2>
 
-                    <form action="{{ path("fos_user_security_check") }}" method="post" accept-charset="utf-8"
+                    <form action="{{ path("fos_user_resetting_send_email") }}" method="post" accept-charset="utf-8"
                           autocomplete="off" role="form" class="form-horizontal">
-                        {% if csrf_token %}
-                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
-                        {% endif %}
+
 
                         <div class="form-group ">
-                            <label for="username" class="sr-only">{{ 'security.login.username'|trans }}</label>
-                            <input type="text" id="username" class="form-control" name="_username"
-                                   value="{{ last_username }}" required="required"
-                                   autocomplete="username" placeholder="{{ 'security.login.username'|trans }}"
-                                   tabindex="1"/>
+
+                            <label for="username" class="sr-only">{{ 'resetting.request.username'|trans }}</label>
+                            <input type="text" class="form-control" id="username" name="username" required="required"
+                                   placeholder="{{ 'resetting.request.username'|trans }}" tabindex="1"/>
                         </div>
 
-                        <div class="form-group ">
-                            <label for="password" class="sr-only">{{ 'security.login.password'|trans }}</label>
-                            <input type="password" class="form-control" id="password" name="_password"
-                                   required="required" autocomplete="current-password"
-                                   placeholder="{{ 'security.login.password'|trans }}" tabindex="2"/>
-                        </div>
-
-                        <div class="checkbox">
-                            <label class="control-label" for="remember_me">
-                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" tabindex="3"/>
-                                {{ 'security.login.remember_me'|trans }}</label>
-                        </div>
 
                         <br/>
                         <div class="form-group ">
                             <button type="submit" name="_submit" id="_submit" tabindex="5"
-                                    class="btn btn-lg btn-primary">{{ 'security.login.submit'|trans }}
+                                    class="btn btn-lg btn-primary">{{ 'resetting.request.submit'|trans }}
                             </button>
                         </div>
 

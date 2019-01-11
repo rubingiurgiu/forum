@@ -1,25 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
-
 {% block body %}
-    <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
-
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>
+    {#<script src="{{ asset('js/js.js') }}"></script>#}
+    {#<link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css"/>#}
 
 
 
     <div class="example-wrapper">
+
+
+        <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </div>
 
         {% if app.user %}
             <p><a href="{{ path('fos_user_security_logout') }}">logout</a></p>
@@ -29,6 +28,10 @@
         {% else %}
             <p><a href="{{ path('fos_user_security_login') }}">login</a></p>
         {% endif %}
+        <a href="{{ path('fos_user_resetting_request') }}">Forgot password ?</a>
+        <a href="{{ path('fos_user_registration_register') }}">register</a>
+
+
 
 
         <h1>Hello {{ controller_name }}! ✅</h1>
@@ -41,4 +44,6 @@
             </li>
         </ul>
     </div>
+
+
 {% endblock %}
